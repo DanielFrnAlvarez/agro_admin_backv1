@@ -3,16 +3,16 @@ import { Document, Types } from "mongoose";
 
 import { Invoice } from "src/modules/invoice/schema/invoice.schema";
 
-export type CustomerDocument = Customer & Document;
+export type CustomersDocument = Customers & Document;
 
 @Schema()
-export class Customer {
+export class Customers {
 
   @Prop({ required: true, unique: true, minlength: 3, maxlength: 30 })
-  customername: string;
+  name: string;
 
   @Prop({ maxlength: 30 })
-  displayName: string;
+  alias: string;
 
   @Prop({ maxlength: 15, minlength: 10 })
   contactNumber: string;
@@ -30,7 +30,8 @@ export class Customer {
   invoices: Invoice[];
 
   // TODO ADD TOTAL DEBT
+  // TODO add payments
 
 }
 
-export const CustomerSchema = SchemaFactory.createForClass(Customer);
+export const CustomersSchema = SchemaFactory.createForClass(Customers);
