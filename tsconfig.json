@@ -16,9 +16,6 @@
     "noImplicitAny": false,
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
-    "noFallthroughCasesInSwitch": false,
-    "rootDir": "./src"
-  },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+    "noFallthroughCasesInSwitch": false
+  }
 }
