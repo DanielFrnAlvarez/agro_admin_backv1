@@ -29,3 +29,5 @@ export class Invoice {
   //TODO ADD PAYMENTS LIST
 
 }
+
+export const InvoiceSchema = SchemaFactory.createForClass(Invoice);
