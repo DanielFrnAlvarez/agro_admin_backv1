@@ -15,9 +15,6 @@ export class Invoice {
   date: Date
 
   @Prop({})
-  partialPayments: number
-
-  @Prop({})
   totalWeight: number
 
   @Prop({})
@@ -29,5 +26,6 @@ export class Invoice {
   @Prop({type:[{type: Types.ObjectId, ref:'Customers'}]})
   customer: Customer;
   //TODO ADD PRODUCT LIST
+  //TODO ADD PAYMENTS LIST
 
 }
