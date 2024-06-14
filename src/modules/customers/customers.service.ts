@@ -13,14 +13,20 @@ export class CustomersService {
     const newCustomers = new this.customersModel(createCustomersDto);
     return newCustomers.save();
   }
+  
   getCustomers() {
     return this.customersModel.find();
   }
+
   getCustomerById(id: string) {
     return this.customersModel.findById(id);
   }
 
   updateCustomer(id: string, updateCustomerDto: UpdateCustomerDto) {
     return this.customersModel.findByIdAndUpdate(id, updateCustomerDto, { new: true });
+  }
+
+  deleteCustomer(id: string) {
+    return this.customersModel.findByIdAndDelete(id);
   }
 }
