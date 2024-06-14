@@ -1,12 +1,13 @@
 import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
-import { Customers } from "./schema/customers.schema";
+import { Customer } from "./schema/customer.schema";
 import { Model } from "mongoose";
-import { CreateCustomersDto } from "./dto/customers.dto";
+import { CreateCustomersDto } from "./dto/create-customer.dto";
+import { UpdateCustomerDto } from "./dto/update-customer.dto";
 
 @Injectable()
 export class CustomersService {
-  constructor(@InjectModel(Customers.name) private customersModel: Model<Customers>) { }
+  constructor(@InjectModel(Customer.name) private customersModel: Model<Customer>) { }
 
   createCustomers(createCustomersDto: CreateCustomersDto) {
     const newCustomers = new this.customersModel(createCustomersDto);
@@ -17,5 +18,9 @@ export class CustomersService {
   }
   getCustomerById(id: string) {
     return this.customersModel.findById(id);
+  }
+
+  updateCustomer(id: string, updateCustomerDto: UpdateCustomerDto) {
+    return this.customersModel.findByIdAndUpdate(id, updateCustomerDto, { new: true });
   }
 }

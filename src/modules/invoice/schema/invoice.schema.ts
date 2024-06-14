@@ -1,7 +1,7 @@
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Types } from "mongoose";
 
-import { Customers } from "src/modules/customers/schema/customers.schema";
+import { Customer } from "src/modules/customers/schema/customer.schema";
 
 export type InvoiceDocument = Invoice & Document;
 
@@ -27,7 +27,7 @@ export class Invoice {
   isPaid: boolean
 
   @Prop({type:[{type: Types.ObjectId, ref:'Customers'}]})
-  customer: Customers;
+  customer: Customer;
   //TODO ADD PRODUCT LIST
 
 }

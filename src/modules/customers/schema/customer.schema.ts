@@ -3,10 +3,10 @@ import { Document, Types } from "mongoose";
 
 import { Invoice } from "src/modules/invoice/schema/invoice.schema";
 
-export type CustomersDocument = Customers & Document;
+export type CustomerDocument = Customer & Document;
 
 @Schema()
-export class Customers {
+export class Customer {
 
   @Prop({ required: true, unique: true, minlength: 3, maxlength: 30 })
   name: string;
@@ -34,4 +34,4 @@ export class Customers {
 
 }
 
-export const CustomersSchema = SchemaFactory.createForClass(Customers);
+export const CustomerSchema = SchemaFactory.createForClass(Customer);
