@@ -29,6 +29,9 @@ export class Customer {
   @Prop({ type: [{ type: Types.ObjectId, ref: 'Invoice' }] })
   invoices: Invoice[];
 
+  @Prop({})
+  totalDebt: number
+
   // TODO ADD TOTAL DEBT
   // TODO add payments
 
