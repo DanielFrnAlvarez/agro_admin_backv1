@@ -4,29 +4,34 @@ import { Customer } from "./schema/customer.schema";
 import { Model } from "mongoose";
 import { CreateCustomersDto } from "./dto/create-customer.dto";
 import { UpdateCustomerDto } from "./dto/update-customer.dto";
+import { throwHttpException } from "src/common/utils/http-exception.utils";
 
 @Injectable()
 export class CustomersService {
-  constructor(@InjectModel(Customer.name) private customersModel: Model<Customer>) { }
+  constructor(@InjectModel(Customer.name) private customerModel: Model<Customer>) { }
 
   createCustomers(createCustomersDto: CreateCustomersDto) {
-    const newCustomers = new this.customersModel(createCustomersDto);
+    const newCustomers = new this.customerModel(createCustomersDto);
     return newCustomers.save();
   }
   
   getCustomers() {
-    return this.customersModel.find();
+    return this.customerModel.find();
   }
 
-  getCustomerById(id: string) {
-    return this.customersModel.findById(id);
+  async getCustomerById(id: string) {
+    const customer = await this.customerModel.findById(id).populate('invoices');
+    if(!customer) {
+      throwHttpException('Customer not found')
+    }
+    return customer;
   }
 
   updateCustomer(id: string, updateCustomerDto: UpdateCustomerDto) {
-    return this.customersModel.findByIdAndUpdate(id, updateCustomerDto, { new: true });
+    return this.customerModel.findByIdAndUpdate(id, updateCustomerDto, { new: true });
   }
 
   deleteCustomer(id: string) {
-    return this.customersModel.findByIdAndDelete(id);
+    return this.customerModel.findByIdAndDelete(id);
   }
 }

@@ -2,6 +2,7 @@ import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Types } from "mongoose";
 
 import { Invoice } from "src/modules/invoices/schema/invoice.schema";
+import { Payment } from "src/modules/payments/schema/payment.schema";
 
 export type CustomerDocument = Customer & Document;
 
@@ -29,11 +30,13 @@ export class Customer {
   @Prop({ type: [{ type: Types.ObjectId, ref: 'Invoice' }] })
   invoices: Invoice[];
 
+  @Prop({type: [{ type: Types.ObjectId, ref: 'Payment'}]})
+  payments: Payment[];
+
   @Prop({})
   totalDebt: number
 
   // TODO ADD TOTAL DEBT
-  // TODO add payments
 
 }
 
