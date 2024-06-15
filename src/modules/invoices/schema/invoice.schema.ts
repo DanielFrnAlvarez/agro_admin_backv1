@@ -14,6 +14,9 @@ export class Invoice {
   @Prop({ required: true })
   date: Date
 
+  @Prop({ required: true, type: [{ type: Types.ObjectId, ref: 'Customers' }] })
+  customer: Customer;
+
   @Prop({})
   totalWeight: number
 
@@ -21,10 +24,8 @@ export class Invoice {
   totalPrice: number
 
   @Prop({ default: false })
-  isPaid: boolean
+  debt: number
 
-  @Prop({type:[{type: Types.ObjectId, ref:'Customers'}]})
-  customer: Customer;
   //TODO ADD PRODUCT LIST
   //TODO ADD PAYMENTS LIST
 
