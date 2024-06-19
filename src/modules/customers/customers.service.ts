@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { Customer } from "./schema/customer.schema";
 import { Model } from "mongoose";
-import { CreateCustomersDto } from "./dto/create-customer.dto";
+import { CreateCustomerDto } from "./dto/create-customer.dto";
 import { UpdateCustomerDto } from "./dto/update-customer.dto";
 import { throwHttpException } from "src/common/utils/exceptions/http-exception.utils";
 
@@ -10,8 +10,8 @@ import { throwHttpException } from "src/common/utils/exceptions/http-exception.u
 export class CustomersService {
   constructor(@InjectModel(Customer.name) private customerModel: Model<Customer>) { }
 
-  createCustomers(createCustomersDto: CreateCustomersDto) {
-    const newCustomers = new this.customerModel(createCustomersDto);
+  createCustomer(createCustomerDto: CreateCustomerDto) {
+    const newCustomers = new this.customerModel(createCustomerDto);
     return newCustomers.save();
   }
   

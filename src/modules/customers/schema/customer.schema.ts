@@ -36,8 +36,6 @@ export class Customer {
   @Prop({})
   totalDebt: number
 
-  // TODO ADD TOTAL DEBT
-
 }
 
 export const CustomerSchema = SchemaFactory.createForClass(Customer);

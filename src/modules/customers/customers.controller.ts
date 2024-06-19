@@ -1,6 +1,6 @@
-import { Body, Controller, Delete, Get, HttpException, Param, Patch, Post } from "@nestjs/common";
+import { Body, Controller, Delete, Get, Param, Patch, Post } from "@nestjs/common";
 import { CustomersService } from "./customers.service";
-import { CreateCustomersDto } from "./dto/create-customer.dto";
+import { CreateCustomerDto } from "./dto/create-customer.dto";
 import { ValidateObjectIdPipe } from "src/common/pipes/validate-id.pipe";
 import { UpdateCustomerDto } from "./dto/update-customer.dto";
 import { throwHttpException } from "src/common/utils/exceptions/http-exception.utils";
@@ -10,8 +10,8 @@ export class CustomersController {
 
   constructor(private customersService: CustomersService) { }
   @Post()
-  createCustomer(@Body() createCustomersDto: CreateCustomersDto) {
-    return this.customersService.createCustomers(createCustomersDto);
+  createCustomer(@Body() createCustomerDto: CreateCustomerDto) {
+    return this.customersService.createCustomer(createCustomerDto);
   }
 
   @Get()
