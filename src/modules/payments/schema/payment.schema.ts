@@ -6,7 +6,7 @@ export type PaymentDocument = Payment & Document;
 export class Payment {
 
   @Prop({ type: Types.ObjectId, ref: 'Customers',required: true })
-  cutomerId: Types.ObjectId;
+  customerId: Types.ObjectId;
 
   @Prop({required: true})
   paymentValue: number

@@ -4,7 +4,7 @@ import { Customer } from "./schema/customer.schema";
 import { Model } from "mongoose";
 import { CreateCustomersDto } from "./dto/create-customer.dto";
 import { UpdateCustomerDto } from "./dto/update-customer.dto";
-import { throwHttpException } from "src/common/utils/http-exception.utils";
+import { throwHttpException } from "src/common/utils/exceptions/http-exception.utils";
 
 @Injectable()
 export class CustomersService {

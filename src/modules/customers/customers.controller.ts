@@ -3,7 +3,7 @@ import { CustomersService } from "./customers.service";
 import { CreateCustomersDto } from "./dto/create-customer.dto";
 import { ValidateObjectIdPipe } from "src/common/pipes/validate-id.pipe";
 import { UpdateCustomerDto } from "./dto/update-customer.dto";
-import { throwHttpException } from "src/common/utils/http-exception.utils";
+import { throwHttpException } from "src/common/utils/exceptions/http-exception.utils";
 
 @Controller('customers')
 export class CustomersController {
@@ -11,7 +11,6 @@ export class CustomersController {
   constructor(private customersService: CustomersService) { }
   @Post()
   createCustomer(@Body() createCustomersDto: CreateCustomersDto) {
-    console.log(createCustomersDto);
     return this.customersService.createCustomers(createCustomersDto);
   }
 
