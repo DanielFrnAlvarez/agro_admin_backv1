@@ -2,6 +2,7 @@ import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
 import { Document, Types } from "mongoose";
 
 import { Customer } from "src/modules/customers/schema/customer.schema";
+import { Payment } from "src/modules/payments/schema/payment.schema";
 
 export type InvoiceDocument = Invoice & Document;
 
@@ -12,22 +13,25 @@ export class Invoice {
   invoiceConsecutive: string;
 
   @Prop({ required: true })
-  date: Date
+  date: Date;
 
   @Prop({ required: true, type: [{ type: Types.ObjectId, ref: 'Customers' }] })
   customer: Customer;
 
-  @Prop({})
-  totalWeight: number
+  @Prop({type: [{ type: Types.ObjectId, ref: 'Customers' }]})
+  paymentList: Payment[];
 
   @Prop({})
-  totalPrice: number
+  totalWeight: number;
+
+  @Prop({})
+  totalPrice: number;
 
   @Prop({ default: false })
-  debt: number
+  debt: number;
 
-  //TODO ADD PRODUCT LIST
-  //TODO ADD PAYMENTS LIST
+  
+  //TODO ADD PIGS LIST
 
 }
 
