@@ -9,13 +9,13 @@ export class Payment {
   customerId: Types.ObjectId;
 
   @Prop({required: true})
-  paymentValue: number
+  paymentValue: number;
 
   @Prop({})
-  paidValue: number
+  paidValue: number;
   
   @Prop({})
-  date: Date
+  date: Date;
 
 }
 
