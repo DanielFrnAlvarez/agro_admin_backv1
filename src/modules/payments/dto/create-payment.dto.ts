@@ -13,5 +13,4 @@ export class CreatePaymentDto{
   @IsOptional()
   @IsDate()
   date?: Date;
-  // todo QUEDE TERMINANDO EL ENDPOINT DE PAYMENT
 }

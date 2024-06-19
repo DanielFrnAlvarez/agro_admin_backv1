@@ -16,4 +16,8 @@ export class PaymentsService{
     });
     return await newPayment.save();
   }
+
+  deletePayment(id:string){
+    return this.paymentModel.findByIdAndDelete(id);
+  }
 }
