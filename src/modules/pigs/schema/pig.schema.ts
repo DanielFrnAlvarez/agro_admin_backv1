@@ -1,5 +1,5 @@
 import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
-import { Document } from "mongoose";
+import { Document, Types } from "mongoose";
 
 export type PigDocument = Pig & Document;
 
@@ -10,7 +10,8 @@ export enum PigState {
 }
 
 @Schema()
-export class Pig{
+export class Pig {
+
   @Prop({})
   weight: number;
 
@@ -18,16 +19,16 @@ export class Pig{
     type: String,
     enum: PigState,
   })
-  state: PigState;
-  // Campos biológicos aquí
+  pigStage: PigState;
 
   @Prop({})
-  Pricing: {
-    unitPrice: number;
-    slaughterPrice: number;
-    totalPrice: number;
-  };
+  slaughterPrice?: number;
 
+  @Prop({})
+  unitPrice: number;
+
+  @Prop({})
+  totalPrice: number;
 }
 
 export const PigSchema = SchemaFactory.createForClass(Pig);
