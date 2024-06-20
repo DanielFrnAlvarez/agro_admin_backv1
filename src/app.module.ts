@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { CustomersModule } from './modules/customers/customers.module';
-import { IsObjectId } from './common/validators/is-object-id.validator';
 import { PaymentsModule } from './modules/payments/payments.module';
 import { PigsModule } from './modules/pigs/pigs.module';
+import { InvoicesModule } from './modules/invoices/invoices.module';
 
 @Module({
   imports: [
@@ -11,8 +11,9 @@ import { PigsModule } from './modules/pigs/pigs.module';
     CustomersModule,
     PaymentsModule,
     PigsModule,
+    InvoicesModule
   ],
   controllers: [],
-  providers: [IsObjectId],
+  providers: [],
 })
 export class AppModule { }

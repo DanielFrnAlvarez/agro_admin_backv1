@@ -1,5 +1,4 @@
-import { IsDate, IsNotEmpty, IsNumber, IsOptional, Validate } from "class-validator";
-import { IsObjectId } from "src/common/validators/is-object-id.validator";
+import { IsDate, IsMongoId, IsNotEmpty, IsNumber } from "class-validator";
 
 export class CreatePaymentDto{
   @IsNotEmpty()
@@ -7,10 +6,9 @@ export class CreatePaymentDto{
   paymentValue: number;
 
   @IsNotEmpty()
-  @Validate(IsObjectId)
+  @IsMongoId()
   customerId: string;
 
-  @IsOptional()
   @IsDate()
   date?: Date;
 }

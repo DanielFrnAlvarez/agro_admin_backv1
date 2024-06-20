@@ -17,7 +17,7 @@ export class PaymentsController {
   async createPayment(@Body() createPaymentDto: CreatePaymentDto) {
     await validateCustomerExistence(this.customersService, createPaymentDto.customerId);
 
-    return this.paymentsService.createPayment(createPaymentDto);
+    return await this.paymentsService.createPayment(createPaymentDto);
   }
 
   @Delete(':id')

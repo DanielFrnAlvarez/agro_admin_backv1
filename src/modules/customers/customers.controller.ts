@@ -10,13 +10,13 @@ export class CustomersController {
 
   constructor(private customersService: CustomersService) { }
   @Post()
-  createCustomer(@Body() createCustomerDto: CreateCustomerDto) {
-    return this.customersService.createCustomer(createCustomerDto);
+  async createCustomer(@Body() createCustomerDto: CreateCustomerDto) {
+    return await this.customersService.createCustomer(createCustomerDto);
   }
 
   @Get()
-  getCustomers() {
-    return this.customersService.getCustomers();
+  async getCustomers() {
+    return await this.customersService.getCustomers();
   }
   
   @Get(':id')

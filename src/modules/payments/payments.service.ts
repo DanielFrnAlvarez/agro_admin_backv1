@@ -5,19 +5,19 @@ import { Model } from "mongoose";
 import { CreatePaymentDto } from "./dto/create-payment.dto";
 
 @Injectable()
-export class PaymentsService{
+export class PaymentsService {
   constructor(
-    @InjectModel(Payment.name) private paymentModel: Model<Payment>){}
+    @InjectModel(Payment.name) private paymentModel: Model<Payment>) { }
 
-  async createPayment(createPaymentDto: CreatePaymentDto){
-    const newPayment = new this.paymentModel({
+  async createPayment(createPaymentDto: CreatePaymentDto) {
+    const newPayment = new this.paymentModel({ 
       paymentValue: createPaymentDto.paymentValue,
-      customerId: createPaymentDto.customerId
-    });
+      customerId: createPaymentDto.customerId, 
+  });
     return await newPayment.save();
   }
 
-  deletePayment(id:string){
+  deletePayment(id: string) {
     return this.paymentModel.findByIdAndDelete(id);
   }
 }
