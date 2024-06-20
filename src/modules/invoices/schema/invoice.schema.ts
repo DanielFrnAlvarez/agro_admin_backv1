@@ -3,6 +3,7 @@ import { Document, Types } from "mongoose";
 
 import { Customer } from "src/modules/customers/schema/customer.schema";
 import { Payment } from "src/modules/payments/schema/payment.schema";
+import { Pig } from "src/modules/pigs/schema/pig.schema";
 
 export type InvoiceDocument = Invoice & Document;
 
@@ -15,10 +16,13 @@ export class Invoice {
   @Prop({ required: true })
   date: Date;
 
-  @Prop({ required: true, type: [{ type: Types.ObjectId, ref: 'Customers' }] })
-  customer: Customer;
+  @Prop({ required: true, type: Types.ObjectId, ref: 'Customers' })
+  customerId: Customer;
 
-  @Prop({type: [{ type: Types.ObjectId, ref: 'Customers' }]})
+  @Prop({required: true, type: [{ type: Types.ObjectId, ref: 'Pigs' }] })
+  pigList: Pig[];
+
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'Payments' }] })
   paymentList: Payment[];
 
   @Prop({})
@@ -27,11 +31,8 @@ export class Invoice {
   @Prop({})
   totalPrice: number;
 
-  @Prop({ default: false })
+  @Prop({ })
   debt: number;
-
-  
-  //TODO ADD PIGS LIST
 
 }
 
