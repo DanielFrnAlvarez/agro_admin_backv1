@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from "@nestjs/common";
+import { Body, Controller, Get, Post } from "@nestjs/common";
 import { InvoicesService } from "./invoices.service";
 import { CreateInvoiceDto } from "./dto/create-invoice.dto";
 import { validateCustomerExistence } from "src/common/validators/customer-exists.validator";
@@ -16,5 +16,10 @@ export class InvoicesController {
     await validateCustomerExistence(this.customerService, String(createInvoiceDto.customerId));
     
     return await this.invoicesService.createInvoice(createInvoiceDto);
+  }
+
+  @Get()
+  async getAllInvoices(){
+    return await this.invoicesService.getAllInvoices();
   }
 }
