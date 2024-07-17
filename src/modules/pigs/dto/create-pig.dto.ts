@@ -1,9 +1,10 @@
-import { IsOptional, IsNumber, IsEnum } from 'class-validator';
+import { IsOptional, IsNumber, IsEnum, ValidateIf } from 'class-validator';
 import { PigState } from '../schema/pig.schema';
 
 export class CreatePigDto {
   @IsOptional()
   @IsNumber()
+  @ValidateIf((o) => o.pigStage !== PigState.Piglet)
   weight: number;
 
   @IsOptional()
@@ -12,6 +13,7 @@ export class CreatePigDto {
 
   @IsOptional()
   @IsNumber()
+  @ValidateIf((o) => o.pigStage !== PigState.Piglet)
   slaughterPrice?: number;
 
   @IsOptional()
