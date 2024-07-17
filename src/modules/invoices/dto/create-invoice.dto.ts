@@ -1,5 +1,12 @@
-import { IsNotEmpty, IsDateString, IsString, IsArray, IsMongoId, IsOptional } from "class-validator";
-import { Types } from "mongoose";
+import {
+  IsNotEmpty,
+  IsDateString,
+  IsString,
+  IsArray,
+  IsMongoId,
+  IsOptional,
+} from 'class-validator';
+import { Types } from 'mongoose';
 
 export class CreateInvoiceDto {
   @IsNotEmpty()

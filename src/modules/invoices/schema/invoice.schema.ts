@@ -1,15 +1,14 @@
-import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
-import { Document, Types } from "mongoose";
+import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
 
-import { Customer } from "src/modules/customers/schema/customer.schema";
-import { Payment } from "src/modules/payments/schema/payment.schema";
-import { Pig } from "src/modules/pigs/schema/pig.schema";
+import { Customer } from 'src/modules/customers/schema/customer.schema';
+import { Payment } from 'src/modules/payments/schema/payment.schema';
+import { Pig } from 'src/modules/pigs/schema/pig.schema';
 
 export type InvoiceDocument = Invoice & Document;
 
 @Schema()
 export class Invoice {
-
   @Prop({ required: true, unique: true })
   invoiceConsecutive: string;
 
@@ -19,7 +18,7 @@ export class Invoice {
   @Prop({ required: true, type: Types.ObjectId, ref: 'Customers' })
   customerId: Customer;
 
-  @Prop({required: true, type: [{ type: Types.ObjectId, ref: 'Pigs' }] })
+  @Prop({ required: true, type: [{ type: Types.ObjectId, ref: 'Pigs' }] })
   pigList: Pig[];
 
   @Prop({ type: [{ type: Types.ObjectId, ref: 'Payments' }] })
@@ -31,9 +30,8 @@ export class Invoice {
   @Prop({})
   totalPrice: number;
 
-  @Prop({ })
+  @Prop({})
   debt: number;
-
 }
 
 export const InvoiceSchema = SchemaFactory.createForClass(Invoice);

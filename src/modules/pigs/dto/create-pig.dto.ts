@@ -1,5 +1,5 @@
-import { IsOptional, IsNumber, IsEnum } from "class-validator";
-import { PigState } from "../schema/pig.schema";
+import { IsOptional, IsNumber, IsEnum } from 'class-validator';
+import { PigState } from '../schema/pig.schema';
 
 export class CreatePigDto {
   @IsOptional()

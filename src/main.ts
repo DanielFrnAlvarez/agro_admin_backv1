@@ -9,11 +9,7 @@ dotenv.config({ path: '.env.local', override: true });
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
-  
-  app.use(cors({
-    origin: process.env.CORS_ORIGIN,
-    credentials: true,
-  }));
+  app.use(cors({ origin: process.env.CORS_ORIGIN, credentials: true }));
 
   app.useGlobalPipes(new ValidationPipe());
 
