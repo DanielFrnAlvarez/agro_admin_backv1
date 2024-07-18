@@ -1,12 +1,11 @@
-import { IsNotEmpty, IsOptional, IsString } from "class-validator";
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class CreateCustomerDto {
   @IsNotEmpty()
   @IsString()
-  name: String;
-  
+  name: string;
+
   @IsString()
   @IsOptional()
-  alias?: String;
-  
+  alias?: string;
 }

@@ -32,7 +32,7 @@ export class Customer {
   @Prop({ type: [{ type: Types.ObjectId, ref: 'Payment' }] })
   payments: Payment[];
 
-  @Prop({})
+  @Prop({ default: 0 })
   totalDebt: number;
 }
 
