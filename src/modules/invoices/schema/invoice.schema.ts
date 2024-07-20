@@ -15,8 +15,11 @@ export class Invoice {
   @Prop({ required: true })
   date: Date;
 
-  @Prop({ required: true, type: Types.ObjectId, ref: 'Customers' })
+  @Prop({ required: true, type: Types.ObjectId, ref: 'Customer' })
   customerId: Customer;
+
+  @Prop({ required: true })
+  customerName: string;
 
   @Prop({ required: true, type: [{ type: Types.ObjectId, ref: 'Pigs' }] })
   pigList: Pig[];
