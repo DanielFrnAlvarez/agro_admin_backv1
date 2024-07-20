@@ -1,4 +1,4 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString, IsEmail } from 'class-validator';
 
 export class CreateCustomerDto {
   @IsNotEmpty()
@@ -8,4 +8,20 @@ export class CreateCustomerDto {
   @IsString()
   @IsOptional()
   alias?: string;
+
+  @IsString()
+  @IsOptional()
+  contactNumber?: string;
+
+  @IsString()
+  @IsOptional()
+  documentNumber?: string;
+
+  @IsEmail()
+  @IsOptional()
+  email?: string;
+
+  @IsString()
+  @IsOptional()
+  desctiption?: string;
 }
