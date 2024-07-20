@@ -12,9 +12,10 @@ export class CustomersService {
     @InjectModel(Customer.name) private customerModel: Model<Customer>,
   ) {}
 
-  createCustomer(createCustomerDto: CreateCustomerDto) {
-    const newCustomers = new this.customerModel(createCustomerDto);
-    return newCustomers.save();
+  async createCustomer(createCustomerDto: CreateCustomerDto) {
+    const newCustomer = new this.customerModel(createCustomerDto);
+    await newCustomer.save();
+    return this.getCustomers();
   }
 
   getCustomers() {
