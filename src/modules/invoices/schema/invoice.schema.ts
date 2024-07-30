@@ -10,7 +10,7 @@ export type InvoiceDocument = Invoice & Document;
 @Schema()
 export class Invoice {
   @Prop({ required: true, unique: true })
-  invoiceConsecutive: string;
+  invoiceConsecutive: number;
 
   @Prop({ required: true })
   date: Date;
