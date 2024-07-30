@@ -1,14 +1,13 @@
-import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
-import { Document, Types } from "mongoose";
+import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
 
-import { Invoice } from "src/modules/invoices/schema/invoice.schema";
-import { Payment } from "src/modules/payments/schema/payment.schema";
+import { Invoice } from 'src/modules/invoices/schema/invoice.schema';
+import { Payment } from 'src/modules/payments/schema/payment.schema';
 
 export type CustomerDocument = Customer & Document;
 
 @Schema()
 export class Customer {
-
   @Prop({ required: true, unique: true, minlength: 3, maxlength: 30 })
   name: string;
 
@@ -21,7 +20,7 @@ export class Customer {
   @Prop({ maxlength: 20, minlength: 5 })
   documentNumber: string;
 
-  @Prop({ maxlength: 100, minlength: 5, match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, })
+  @Prop({ maxlength: 100, minlength: 5, match: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })
   email: string;
 
   @Prop({ maxlength: 500 })
@@ -30,12 +29,11 @@ export class Customer {
   @Prop({ type: [{ type: Types.ObjectId, ref: 'Invoice' }] })
   invoices: Invoice[];
 
-  @Prop({type: [{ type: Types.ObjectId, ref: 'Payment'}]})
+  @Prop({ type: [{ type: Types.ObjectId, ref: 'Payment' }] })
   payments: Payment[];
 
-  @Prop({})
-  totalDebt: number
-
+  @Prop({ default: 0 })
+  totalDebt: number;
 }
 
 export const CustomerSchema = SchemaFactory.createForClass(Customer);

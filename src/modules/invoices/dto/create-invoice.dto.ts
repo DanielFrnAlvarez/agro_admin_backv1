@@ -1,10 +1,20 @@
-import { IsNotEmpty, IsDateString, IsString, IsArray, IsMongoId, IsOptional } from "class-validator";
-import { Types } from "mongoose";
+import { Type } from 'class-transformer';
+import {
+  IsNotEmpty,
+  IsDateString,
+  IsArray,
+  IsMongoId,
+  IsOptional,
+  ValidateNested,
+  IsNumber,
+} from 'class-validator';
+import { Types } from 'mongoose';
+import { Pig } from 'src/modules/pigs/schema/pig.schema';
 
 export class CreateInvoiceDto {
   @IsNotEmpty()
-  @IsString()
-  invoiceConsecutive: string;
+  @IsNumber()
+  invoiceConsecutive: number;
 
   @IsNotEmpty()
   @IsDateString()
@@ -17,8 +27,9 @@ export class CreateInvoiceDto {
 
   @IsNotEmpty()
   @IsArray()
-  @IsMongoId({ each: true })
-  pigList: Types.ObjectId[];
+  @ValidateNested({ each: true })
+  @Type(() => Pig)
+  pigList?: Pig[];
 
   @IsOptional()
   @IsArray()

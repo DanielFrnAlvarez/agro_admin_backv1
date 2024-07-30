@@ -1,17 +1,16 @@
-import { Schema, Prop, SchemaFactory } from "@nestjs/mongoose";
-import { Document, Types } from "mongoose";
+import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
 
-export type PigDocument = Pig & Document;
+export type PigDocument = Pig & Document & { _id: Types.ObjectId };
 
 export enum PigState {
   Piglet = 'Piglet',
   Growing = 'Growing',
-  Finishing = 'Finishing'
+  Finishing = 'Finishing',
 }
 
 @Schema()
 export class Pig {
-
   @Prop({})
   weight: number;
 
