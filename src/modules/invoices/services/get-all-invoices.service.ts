@@ -21,11 +21,11 @@ export class GetAllInvoicesService {
     page: number = 1,
     pageSize: number = 20,
   ): Promise<{
-    invoices: Invoice[];
+    invoiceData: Invoice[];
     topConsecutive: number;
     missingConsecutives: number[];
   }> {
-    const invoices = await this.invoiceModel
+    const invoicesData = await this.invoiceModel
       .find()
       .sort({ date: -1 })
       .limit(pageSize)
@@ -35,6 +35,6 @@ export class GetAllInvoicesService {
       this.topConsecutiveInvoiceService.topConsecutiveInvoice(),
       this.findMissingConsecutivesService.findMissingConsecutives(),
     ]);
-    return { invoices, topConsecutive, missingConsecutives };
+    return { invoiceData: invoicesData, topConsecutive, missingConsecutives };
   }
 }
