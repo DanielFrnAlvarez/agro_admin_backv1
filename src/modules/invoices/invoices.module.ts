@@ -13,6 +13,7 @@ import { CreateInvoiceService } from './services/create-invoice.service';
 import { GetAllInvoicesService } from './services/get-all-invoices.service';
 import { FindMissingConsecutivesService } from './services/utils/find-missing-consecutives.service';
 import { TopConsecutiveInvoiceService } from './services/utils/top-consecutive.service';
+import { CalculateTotalValueService } from './services/utils/calculate-total-value.service';
 
 @Module({
   imports: [
@@ -41,6 +42,7 @@ import { TopConsecutiveInvoiceService } from './services/utils/top-consecutive.s
     GetAllInvoicesService,
     FindMissingConsecutivesService,
     TopConsecutiveInvoiceService,
+    CalculateTotalValueService,
     PaymentsService,
     CustomersService,
     PigsService,

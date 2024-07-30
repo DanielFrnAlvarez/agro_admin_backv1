@@ -5,24 +5,36 @@ import {
   Invoice,
   InvoiceDocument,
 } from 'src/modules/invoices/schema/invoice.schema';
+import { TopConsecutiveInvoiceService } from './utils/top-consecutive.service';
+import { FindMissingConsecutivesService } from './utils/find-missing-consecutives.service';
 
 @Injectable()
 export class GetAllInvoicesService {
   constructor(
     @InjectModel(Invoice.name)
     private readonly invoiceModel: Model<InvoiceDocument>,
+    private readonly topConsecutiveInvoiceService: TopConsecutiveInvoiceService,
+    private readonly findMissingConsecutivesService: FindMissingConsecutivesService,
   ) {}
 
   async getAllInvoices(
     page: number = 1,
     pageSize: number = 20,
-  ): Promise<Invoice[]> {
+  ): Promise<{
+    invoices: Invoice[];
+    topConsecutive: number;
+    missingConsecutives: number[];
+  }> {
     const invoices = await this.invoiceModel
       .find()
       .sort({ date: -1 })
       .limit(pageSize)
       .skip((page - 1) * pageSize)
       .exec();
-    return invoices;
+    const [topConsecutive, missingConsecutives] = await Promise.all([
+      this.topConsecutiveInvoiceService.topConsecutiveInvoice(),
+      this.findMissingConsecutivesService.findMissingConsecutives(),
+    ]);
+    return { invoices, topConsecutive, missingConsecutives };
   }
 }

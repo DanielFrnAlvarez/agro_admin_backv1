@@ -7,10 +7,11 @@ import {
   InvoiceDocument,
 } from 'src/modules/invoices/schema/invoice.schema';
 import * as customerSchema from '../../customers/schema/customer.schema';
-import { Pig, PigDocument } from '../../pigs/schema/pig.schema';
+import { PigDocument } from '../../pigs/schema/pig.schema';
 import { PigsService } from '../../pigs/pigs.service';
 import { FindMissingConsecutivesService } from './utils/find-missing-consecutives.service';
 import { TopConsecutiveInvoiceService } from './utils/top-consecutive.service';
+import { CalculateTotalValueService } from './utils/calculate-total-value.service';
 
 @Injectable()
 export class CreateInvoiceService {
@@ -19,9 +20,9 @@ export class CreateInvoiceService {
     private readonly invoiceModel: Model<InvoiceDocument>,
     private readonly findMissingConsecutivesService: FindMissingConsecutivesService,
     private readonly topConsecutiveInvoiceService: TopConsecutiveInvoiceService,
+    private readonly calculateTotalValueService: CalculateTotalValueService,
     @InjectModel(customerSchema.Customer.name)
     private readonly customerModel: Model<customerSchema.CustomerDocument>,
-    @InjectModel(Pig.name) private readonly pigModel: Model<PigDocument>,
     private readonly pigsService: PigsService,
   ) {}
 
@@ -34,17 +35,20 @@ export class CreateInvoiceService {
     }
 
     let pigIds = [];
+    let totalPrice = 0;
     if (pigList && pigList.length > 0) {
       const pigDocuments = await Promise.all(
         pigList.map((pigData) => this.pigsService.createPig(pigData)),
       );
       pigIds = pigDocuments.map((pig: PigDocument) => pig._id);
+      totalPrice = this.calculateTotalValueService.calculateTotalValue(pigList);
     }
 
     const newInvoice = new this.invoiceModel({
       ...createInvoiceDto,
       pigList: pigIds,
       customerName: customer.name,
+      totalPrice,
     });
 
     try {
