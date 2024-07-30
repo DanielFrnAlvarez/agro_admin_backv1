@@ -1,7 +1,7 @@
 import { Schema, Prop, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
+import { Document, Types } from 'mongoose';
 
-export type PigDocument = Pig & Document;
+export type PigDocument = Pig & Document & { _id: Types.ObjectId };
 
 export enum PigState {
   Piglet = 'Piglet',

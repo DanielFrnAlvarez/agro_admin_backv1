@@ -9,7 +9,7 @@ export class CreatePigDto {
 
   @IsOptional()
   @IsEnum(PigState)
-  pigStage: PigState;
+  pigStage?: PigState;
 
   @IsOptional()
   @IsNumber()
